@@ -1,3 +1,4 @@
 export default{
-    Home:"Home"
+    Home:"Home",
+    About:"About"
 }

@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RouteName from './RouterName'
 
 import HomeScreen from '../Screens/Home'
+import AboutScreen from "../Screens/About";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,6 +31,9 @@ export default function TabRouter() {
                         if(route.name == RouteName.Home){
                             iconName = focused ? "home" : "home-outline"
                         }
+                        if(route.name == RouteName.About){
+                            iconName = focused ? "information-circle" : "information-circle-outline"
+                        }
                         return <Icon name={iconName} size={size} color={color}/>
                     },
                     tabBarActiveTintColor: '#A2D2FF',
@@ -37,7 +41,7 @@ export default function TabRouter() {
                 })}
             >
                 <Tab.Screen name={RouteName.Home} component={HomeScreen} />
-                {/* <Tab.Screen name={RouteName.Home} component={HomeScreen} /> */}
+                <Tab.Screen name={RouteName.About} component={AboutScreen} />
                 {/* <Tab.Screen options={{ headerShown: false }} name={RouteName.Home} component={StackRouter} /> */}
             </Tab.Navigator>
         </NavigationContainer>
