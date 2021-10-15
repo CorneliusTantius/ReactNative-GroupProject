@@ -21,6 +21,6 @@ export const sampleSlice = createSlice({
     },
 })
 export const valueSample = state => state.sample.value;
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount } = sampleSlice.actions
 
-export default counterSlice.reducer
+export default sampleSlice.reducer
