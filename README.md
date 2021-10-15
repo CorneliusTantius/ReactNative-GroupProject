@@ -1,10 +1,10 @@
 # React Native Project
 A project for React Native training session. This project is made by:
 
-- Cornelius Tantius ![https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white](https://github.com/CorneliusTantius)
-- Eric Jonson ![https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white](https://github.com/Eric-J04)
-- Limas Jaya Akeh ![https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white](https://github.com/limasakeh)
-- Mohammad Syarif Ardi Nugroho ![https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white](https://github.com/ardin301)
+- Cornelius Tantius [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="12px"/>](https://github.com/CorneliusTantius)
+- Eric Jonson [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="12px"/>](https://github.com/Eric-J04)
+- Limas Jaya Akeh [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="12px"/>](https://github.com/limasakeh)
+- Mohammad Syarif Ardi Nugroho [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="12px"/>](https://github.com/ardin301)
 
 
 ## How To Run
