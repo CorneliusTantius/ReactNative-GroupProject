@@ -13,3 +13,7 @@ A project for React Native training session. This project is made by:
 - Next is to have your environment set up, since the steps is quite long, I will refer the environment setup to [this](https://reactnative.dev/docs/environment-setup) link.
 - After everything installed, you can open a command window in this project repository and run `npm install` or `yarn install` to install the required node_modules.
 - Then, by having your device connected or your virtual device running, you can type `npx react-native start` and `npx react-native run-android` to start the app.
+
+
+## Color
+Check the color palette [here](https://colorhunt.co/palette/a2d2fffef9efff865efee440).

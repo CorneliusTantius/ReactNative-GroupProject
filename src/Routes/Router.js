@@ -1,4 +1,5 @@
 import React from "react";
+import Icon from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,7 +22,20 @@ const StackRouter = function () {
 export default function TabRouter() {
     return (
         <NavigationContainer>
-            <Tab.Navigator /*screenOptions={{headerShown: false}}*/ >
+            <Tab.Navigator
+                screenOptions={({route}) => ({
+                    tabBarIcon: ({ focused, color, size }) =>{
+                        let iconName = "planet";
+
+                        if(route.name == RouteName.Home){
+                            iconName = focused ? "home" : "home-outline"
+                        }
+                        return <Icon name={iconName} size={size} color={color}/>
+                    },
+                    tabBarActiveTintColor: '#A2D2FF',
+                    tabBarInactiveTintColor: 'gray',
+                })}
+            >
                 <Tab.Screen name={RouteName.Home} component={HomeScreen} />
                 {/* <Tab.Screen name={RouteName.Home} component={HomeScreen} /> */}
                 {/* <Tab.Screen options={{ headerShown: false }} name={RouteName.Home} component={StackRouter} /> */}
