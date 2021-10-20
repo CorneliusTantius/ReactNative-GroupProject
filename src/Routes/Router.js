@@ -7,6 +7,7 @@ import RouteName from './RouterName'
 
 import HomeScreen from '../Screens/Home'
 import AboutScreen from "../Screens/About";
+import QuizScreen from "../Screens/Quiz";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,9 @@ export default function TabRouter() {
                         if(route.name == RouteName.About){
                             iconName = focused ? "information-circle" : "information-circle-outline"
                         }
+                        if(route.name == RouteName.Quiz){
+                            iconName = focused ? "aperture" : "aperture-outline"
+                        }
                         return <Icon name={iconName} size={size} color={color}/>
                     },
                     tabBarActiveTintColor: '#A2D2FF',
@@ -42,6 +46,7 @@ export default function TabRouter() {
             >
                 <Tab.Screen name={RouteName.Home} component={HomeScreen} />
                 <Tab.Screen name={RouteName.About} component={AboutScreen} />
+                <Tab.Screen name={RouteName.Quiz} component={QuizScreen} />
                 {/* <Tab.Screen options={{ headerShown: false }} name={RouteName.Home} component={StackRouter} /> */}
             </Tab.Navigator>
         </NavigationContainer>
