@@ -17,10 +17,15 @@ A project for React Native training session. This project is made by:
 
 ## Color
 #ab3cfc	rgb(171, 60, 252)
+
 #7e6df3	rgb(126, 109, 243)
+
 #533b7c	rgb(83, 59, 124)
+
 #7c589a	rgb(124, 88, 154)
+
 #9f8cca	rgb(159, 140, 202)
+
 #3e394c	rgb(62, 57, 76)
 
 splash screen

@@ -18,11 +18,17 @@ export const profileSlice = createSlice({
         },
         resetUserName: (state) => {
             state.userName = "Eric"
+        },
+        setUserName: (state, action) => {
+            state.userName = action.payload
+        },
+        setHighScore : (state, action) => {
+            state.highScore = action.payload
         }
     },
 })
-export const profile_userName = state => state.userName.value;
-export const profile_highScore = state => state.highScore.value;
+export const profileUserName = state => state.profile.userName;
+export const profileHighScore = state => state.profile.highScore;
 export const { resetBoth, resetScore, resetUserName } = profileSlice.actions
 
 export default profileSlice.reducer

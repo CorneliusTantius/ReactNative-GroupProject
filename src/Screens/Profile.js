@@ -1,12 +1,28 @@
-import React, { useState } from 'react'
-import {View, SafeAreaView, Text, StyleSheet, TextInput, Dimensions} from 'react-native'
+import React, { useEffect, useState } from 'react'
+import {View, SafeAreaView, Text, StyleSheet, TextInput, Dimensions, ScrollView} from 'react-native'
+import { useDispatch, useSelector } from 'react-redux';
+import { profileUserName, profileHighScore, setUserName } from '../Store/Reducers/ProfileReducer'
+import { withNavigationFocus } from 'react-navigation';
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
 const ProfileScreen = () => {
-    const [userName, setUserName] = useState('Eric') // get name from store
+    const [userName, setUserName] = useState('No Name') // get name from store
+    const [userScore, setUserScore] = useState(0)
     const [errorMessage, setErrorMessage] = useState("")
+    
+    const profile_userName = useSelector(profileUserName)
+    const profile_highScore = useSelector(profileHighScore)
+    useEffect(() => {
+        console.log("effect triggered")
+        setUserName(profile_userName)
+        setUserScore(profile_highScore)
+
+        return () => console.log("effect unmounted")
+    }, [profile_userName, profile_highScore])
+
+    
 
     const textInputHandler = (inputValue) => {
         if(inputValue.length < 4){
@@ -22,7 +38,19 @@ const ProfileScreen = () => {
         else{
             setUserName(inputValue)
             setErrorMessage("")
-            // update data di store
+            useDispatch(setUserName(inputValue))
+        }
+    }
+    const endTextInputHandler = () => {
+        let inputValue = userName
+        if(inputValue.length < 4){
+            setUserName(profile_userName)
+            setErrorMessage("")
+            return
+        }
+        else if(inputValue.length > 20){
+            setUserName(profile_userName)
+            setErrorMessage("")
             return
         }
     }
@@ -34,8 +62,9 @@ const ProfileScreen = () => {
             </View>
             <View style={[styles.fill, styles.center]}>
                 <Text style={[styles.defaultText]}>Name:</Text>
-                <TextInput style={[styles.input]} value={userName} onChangeText={textInputHandler}/>
+                <TextInput style={[styles.input]} value={userName} onChangeText={textInputHandler} onBlur={endTextInputHandler}/>
                 <Text>{errorMessage}</Text> 
+                <Text>Current High Score: {userScore}</Text> 
             </View>
         </SafeAreaView>
     )
