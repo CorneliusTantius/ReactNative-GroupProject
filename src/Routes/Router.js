@@ -48,7 +48,7 @@ export default function TabRouter() {
                     tabBarInactiveTintColor: 'gray',
                 })}
             >
-                {/* <Tab.Screen name={RouteName.Home} component={HomeScreen} /> */}
+                <Tab.Screen name={RouteName.Home} component={HomeScreen} />
                 <Tab.Screen name={RouteName.Quiz} component={QuizScreen} />
                 <Tab.Screen name={RouteName.Profile} component={ProfileScreen} options={{headerShown:false}} />
                 <Tab.Screen name={RouteName.About} component={AboutScreen} />
