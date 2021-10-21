@@ -4,18 +4,16 @@ import { RadioButton } from 'react-native-paper'
 
 
 const RadioButtonsComponent = (props) => {
-    const [checked, setChecked] = useState("")
-
     return (
         <View style={{flexDirection: "column"}}>
             {
                 props.listItem.map(
                     (item) => 
-                    <View style={{flexDirection:"row"}}>
+                    <View style={{flexDirection:"row"}} key={item.key}>
                         <RadioButton 
                             value={item.key}
-                            status={checked === item.key ? "checked" : "unchecked"}
-                            onPress={() => setChecked(item.key)}
+                            status={props.checked === item.key ? "checked" : "unchecked"}
+                            onPress={() => props.callback(item.key)}
                         />
                         <Text>{item.label}</Text>
                     </View>
