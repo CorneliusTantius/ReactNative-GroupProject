@@ -1,55 +1,55 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import {View, SafeAreaView, Text, StyleSheet, TextInput, Dimensions, ScrollView} from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import { profileUserName, profileHighScore, setUserName } from '../Store/Reducers/ProfileReducer'
-import { withNavigationFocus } from 'react-navigation';
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
 const ProfileScreen = () => {
-    const [userName, setUserName] = useState('No Name') // get name from store
-    const [userScore, setUserScore] = useState(0)
+    const [userName, setThisUserName] = useState('No Name') // get name from store
+    const [userScore, setThisUserScore] = useState(0)
     const [errorMessage, setErrorMessage] = useState("")
     
     const profile_userName = useSelector(profileUserName)
     const profile_highScore = useSelector(profileHighScore)
     useEffect(() => {
         console.log("effect triggered")
-        setUserName(profile_userName)
-        setUserScore(profile_highScore)
+        setThisUserName(profile_userName)
+        setThisUserScore(profile_highScore)
 
         return () => console.log("effect unmounted")
     }, [profile_userName, profile_highScore])
 
     
-
+    const dispatcher = useDispatch()
     const textInputHandler = (inputValue) => {
         if(inputValue.length < 4){
-            setUserName(inputValue)
+            setThisUserName(inputValue)
             setErrorMessage("User Name is too short")
             return
         }
         else if(inputValue.length > 20){
-            setUserName(inputValue)
+            setThisUserName(inputValue)
             setErrorMessage("User Name is too long")
             return
         }
         else{
-            setUserName(inputValue)
+            setThisUserName(inputValue)
             setErrorMessage("")
-            useDispatch(setUserName(inputValue))
+            dispatcher(setUserName(inputValue))
+            return
         }
     }
     const endTextInputHandler = () => {
         let inputValue = userName
         if(inputValue.length < 4){
-            setUserName(profile_userName)
+            setThisUserName(profile_userName)
             setErrorMessage("")
             return
         }
         else if(inputValue.length > 20){
-            setUserName(profile_userName)
+            setThisUserName(profile_userName)
             setErrorMessage("")
             return
         }

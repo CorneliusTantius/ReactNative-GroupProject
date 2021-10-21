@@ -29,6 +29,6 @@ export const profileSlice = createSlice({
 })
 export const profileUserName = state => state.profile.userName;
 export const profileHighScore = state => state.profile.highScore;
-export const { resetBoth, resetScore, resetUserName } = profileSlice.actions
+export const { resetBoth, resetScore, resetUserName, setUserName, setHighScore } = profileSlice.actions
 
 export default profileSlice.reducer
