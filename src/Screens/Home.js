@@ -1,6 +1,12 @@
 import React from 'react'
 import {View, SafeAreaView, Text, StyleSheet} from 'react-native'
 const HomeScreen = () => {
+    const [score, setScore] = useState('')
+
+    setScoreData = (score) => {
+        this.setScore(score)
+    }
+
     return (
         <SafeAreaView style={[styles.fill]}>
             <View style={[styles.fill, styles.center]}>
