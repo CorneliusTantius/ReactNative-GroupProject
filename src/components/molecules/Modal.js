@@ -1,16 +1,27 @@
-import React from 'react';
+import React ,{ useEffect, useState }from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentScore} from '../../Store/Reducers/ScoreReducer'
+import { Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 
 
 const ModalComponent = props => {
-    const [score, setScore] = useState('')
+    const [modalCurrentScore, setModalCurrentScore] = useState(0);
+    const modal_currentScore = useSelector(currentScore);
+
+    useEffect(() => {
+        console.log("effect triggered")
+        setModalCurrentScore(modal_currentScore)
+        return () => console.log("effect unmounted")
+    }, [modal_currentScore])
+
     if (props.isCorrect) {
         return (
             <Modal
                 animationType="slide"
                 transparent={true}
-                visible={modalVisible}
+                visible={props.modalVisible}
                 onRequestClose={() => {
-                    props.setModalVisible(!modalVisible);
+                    props.setModalVisible(!props.modalVisible);
                 }}
             >
                 <View style={styles.centeredView}>
@@ -18,7 +29,7 @@ const ModalComponent = props => {
                         <Text style={styles.modalText}>Correct Answer</Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
+                            onPress={() => setModalVisible(!props.modalVisible)}
                         >
                             <Text style={styles.textStyle}>Next Qeustion</Text>
                         </Pressable>
@@ -31,19 +42,19 @@ const ModalComponent = props => {
             <Modal
                 animationType="slide"
                 transparent={true}
-                visible={modalVisible}
+                visible={props.modalVisible}
                 onRequestClose={() => {
-                    props.setModalVisible(!modalVisible);
+                    props.setModalVisible(!props.modalVisible);
                 }}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Wrong Answer</Text>
                         <Text style={styles.modalText}>Final Achieve Score :</Text>
-                        <Text style={styles.modalText}>{score}</Text>
+                        <Text style={styles.modalText}>{modalCurrentScore}</Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
+                            onPress={() => props.setModalVisible(!props.modalVisible)}
                         >
                             <Text style={styles.textStyle}>Next Qeustion</Text>
                         </Pressable>
