@@ -60,11 +60,14 @@ const ProfileScreen = () => {
             <View style={[styles.center]}>
                 <Text style={[styles.titleText]}>Quiz App</Text>
             </View>
-            <View style={[styles.fill, styles.center]}>
+            <View style={[styles.fill, styles.leftist]}>
                 <Text style={[styles.defaultText]}>Name:</Text>
                 <TextInput style={[styles.input]} value={userName} onChangeText={textInputHandler} onBlur={endTextInputHandler}/>
                 <Text>{errorMessage}</Text> 
-                <Text>Current High Score: {userScore}</Text> 
+            </View>
+            <View style={[styles.fill, styles.centerHorizontal]}>
+                <Text style={[styles.scoreTitle]}>Highest Score Attempt:</Text>
+                <Text style={[styles.score]}>{userScore}</Text> 
             </View>
         </SafeAreaView>
     )
@@ -78,25 +81,42 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center"
     },
+    leftist:{
+        justifyContent:"flex-end",
+        alignItems:"flex-start",
+        paddingLeft:0.15*vw
+    },
+    centerHorizontal:{
+        alignItems:"center"
+    },
     titleText:{
-        fontSize: 64,
-        marginTop:8,
-        fontWeight:"600",
+        fontSize: 56,
+        marginTop:0.05*vh,
+        fontWeight:"400",
     },
     defaultText:{
-        margin:8,
         fontSize:20,
         fontWeight:"400",
+        marginBottom: 0.03*vw
     },
     input: {
         height: 40,
-        margin: 12,
         borderWidth: 1,
         padding: 10,
-        width: 0.7*vw
+        width: 0.7*vw,
+        borderRadius:8
     },
     div1:{
         backgroundColor:"blue"
+    },
+    scoreTitle:{
+        fontSize:18,
+        fontWeight:"bold",
+        margin:0.02*vh
+    },
+    score:{
+        fontSize:36,
+        fontWeight:"600"
     }
 })
 
