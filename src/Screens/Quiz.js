@@ -1,16 +1,25 @@
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
 import {View, SafeAreaView, Text, StyleSheet, Button} from 'react-native'
+import { ActivityIndicator } from 'react-native-paper'
+import SubmitButtonComponent from '../components/atoms/SubmitButton'
 import RadioButtonsComponent from '../components/molecules/RadioButtons'
 import RetrieveQuestion from '../Services/QuizService'
 
-const QuizScreen = () => {
+const RealQuizScreen = ({navigation}) => {
     const [question, setQuestion] = useState("")
     const [answers, setAnswers] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [checked, setChecked] = useState("")
+    const [correct, setCorrect] = useState("")
 
     useEffect(() => {
         async function fetchData() {
             const quizData = await RetrieveQuestion()
+            //setup question
             setQuestion(quizData.question)
+
+            //setup multiple answer
             var answerData = []
             if (quizData.answers.answer_a != null) {
                 answerData.push({
@@ -48,28 +57,69 @@ const QuizScreen = () => {
                     label: quizData.answers.answer_f
                 })
             }
-            console.log(answerData)
             setAnswers(answerData)
+
+            //setup correct answer
+            //setCorrect("a")
+            if (quizData.correct_answers.answer_a_correct == "true") {
+                setCorrect("a")
+            }
+            else if (quizData.correct_answers.answer_b_correct == "true") {
+                setCorrect("b")
+            }
+            else if (quizData.correct_answers.answer_c_correct == "true") {
+                setCorrect("c")
+            }
+            else if (quizData.correct_answers.answer_d_correct == "true") {
+                setCorrect("d")
+            }
+            else if (quizData.correct_answers.answer_e_correct == "true") {
+                setCorrect("e")
+            }
+            else if (quizData.correct_answers.answer_f_correct == "true") {
+                setCorrect("f")
+            }
+            console.log(correct)
         }
-        fetchData()
+        fetchData().then(() => {
+            setIsLoading(false)
+        })
     }, [])
 
+    const SubmitAnswer = () => {
+        if (checked == correct) {
+            navigation.push('RealQuiz')
+        } else {
+            console.log("salah")
+        }
+    }
+
     return (
-        <SafeAreaView>
+        <SafeAreaView style={[styles.fill]}>
             {
-                // isLoading ?
-                // <View style={[styles.center]}>
-                //     <Text style={[styles.questionText]}>Hello Wa</Text>
-                // </View>
-                // : 
+                isLoading ?
+                <View style={[styles.center, styles.fill]}>
+                    <ActivityIndicator size="large"/>
+                </View>
+                : 
                 
-                <View style={[styles.center]}>
+                <View style={[styles.fill]}>
                     <Text style={[styles.questionText]}>{question}</Text>
-                    <RadioButtonsComponent listItem={answers} />
+                    <RadioButtonsComponent listItem={answers} checked={checked} callback={setChecked}/>
+                    <SubmitButtonComponent callback={SubmitAnswer}/>
                 </View>
             }
-
         </SafeAreaView>
+    )
+}
+
+const Stack = createNativeStackNavigator()
+
+const QuizScreen = () => {
+    return (
+        <Stack.Navigator initialRouteName="RealQuiz" screenOptions={{headerShown: false}}>
+            <Stack.Screen name="RealQuiz" component={RealQuizScreen} />
+        </Stack.Navigator>
     )
 }
 
