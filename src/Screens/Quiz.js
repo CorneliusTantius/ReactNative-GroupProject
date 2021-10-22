@@ -8,6 +8,7 @@ import RetrieveQuestion from '../Services/QuizService'
 import { useDispatch, useSelector } from 'react-redux';
 import {currentScore,addScoreWhenCorrect,resetScore} from '../Store/Reducers/ScoreReducer'
 import ModalComponent from '../components/molecules/Modal'
+import { profileHighScore ,setHighScore } from '../Store/Reducers/ProfileReducer'
 
 const RealQuizScreen = ({ navigation }) => {
     const [question, setQuestion] = useState("")
@@ -20,6 +21,7 @@ const RealQuizScreen = ({ navigation }) => {
     const [wrongModalVisible, setWrongModalVisible] = useState(false)
 
     const quiz_currentScore = useSelector(currentScore)
+    const user_highestScore = useSelector(profileHighScore)
     const dispatch = useDispatch();
 
     const addScoreWhenCorrectQuiz = () =>{
@@ -125,6 +127,9 @@ const RealQuizScreen = ({ navigation }) => {
         } else {
             setWrongModalVisible(true)
             //navigation.push('RealQuiz')
+            if(quizCurrentScore > user_highestScore){
+                dispatch(setHighScore(quizCurrentScore))
+            }
         }
     }
 
