@@ -79,7 +79,6 @@ const RealQuizScreen = ({navigation}) => {
             else if (quizData.correct_answers.answer_f_correct == "true") {
                 setCorrect("f")
             }
-            console.log(correct)
         }
         fetchData().then(() => {
             setIsLoading(false)
@@ -95,18 +94,20 @@ const RealQuizScreen = ({navigation}) => {
     }
 
     return (
-        <SafeAreaView style={[styles.fill]}>
+        <SafeAreaView style={[styles.background]}>
             {
                 isLoading ?
                 <View style={[styles.center, styles.fill]}>
-                    <ActivityIndicator size="large"/>
+                    <ActivityIndicator color="#ffffff" size="large"/>
                 </View>
                 : 
                 
                 <View style={[styles.fill]}>
                     <Text style={[styles.questionText]}>{question}</Text>
                     <RadioButtonsComponent listItem={answers} checked={checked} callback={setChecked}/>
-                    <SubmitButtonComponent callback={SubmitAnswer}/>
+                    <View style={{alignItems: "flex-end"}} >
+                        <SubmitButtonComponent callback={SubmitAnswer}/>
+                    </View>
                 </View>
             }
         </SafeAreaView>
@@ -127,15 +128,24 @@ const styles = StyleSheet.create({
     fill:{
         flex:1
     },
+
+    background:{
+        flex:1,
+        backgroundColor: "#ffffff"
+    },
+
     center:{
         justifyContent:"center",
         alignItems:"center"
     },
     questionText:{
-        margin:8,
-        fontSize:24,
+        margin: 16,
+        fontSize: 24,
         fontWeight: "bold",
-        color: "#0e0e0e"
+        color: "#ffffff",
+        backgroundColor: "#7c589a",
+        padding : 16,
+        borderRadius : 20
     }
 })
 
