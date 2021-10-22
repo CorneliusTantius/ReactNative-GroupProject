@@ -28,7 +28,7 @@ const ModalComponent = props => {
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Correct Answer</Text>
                         <Pressable
-                            style={[styles.button, styles.buttonClose]}
+                            style={[styles.button, styles.buttonModal]}
                             onPress={() => props.setModalVisible(false),props.nextQuestion}
                         >
                             <Text style={styles.textStyle}>Next Qeustion</Text>
@@ -54,13 +54,13 @@ const ModalComponent = props => {
                         <Text style={styles.modalText}>{modalCurrentScore}</Text>
                         <View style={styles.rowView}>
                             <Pressable
-                                style={[styles.button, styles.buttonClose]}
+                                style={[styles.button, styles.buttonModal]}
                                 onPress={() => props.setModalVisible(!props.modalVisible),props.retryQuiz}
                             >
                                 <Text style={styles.textStyle}>Retry</Text>
                             </Pressable>
                             <Pressable
-                                style={[styles.button, styles.buttonClose]}
+                                style={[styles.button, styles.buttonModal]}
                                 onPress={() => props.setModalVisible(!props.modalVisible),props.exitQuiz}
                             >
                                 <Text style={styles.textStyle}>Exit</Text>
@@ -107,12 +107,8 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2
     },
-    buttonOpen: {
-        backgroundColor: "#ca6ef5",
-        margin : 10
-    },
-    buttonClose: {
-        backgroundColor: "#ca6ef5",
+    buttonModal: {
+        backgroundColor: "#7c589a",
         margin : 10
     },
     textStyle: {
