@@ -13,10 +13,13 @@ export const scoreSlice = createSlice({
         },
         setScore : (state, action) => {
             state.currentScore = action.payload
+        },
+        addScoreWhenCorrect : (state) => {
+            state.currentScore = state.currentScore + 10
         }
     },
 })
 export const currentScore = state => state.score.currentScore;
-export const {resetScore,setScore} = scoreSlice.actions
+export const {resetScore,setScore,addScoreWhenCorrect} = scoreSlice.actions
 
 export default scoreSlice.reducer

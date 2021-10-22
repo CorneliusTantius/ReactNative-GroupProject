@@ -1,19 +1,52 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
-import {View, SafeAreaView, Text, StyleSheet, Button} from 'react-native'
+import { View, SafeAreaView, Text, StyleSheet, Button } from 'react-native'
 import { ActivityIndicator } from 'react-native-paper'
 import SubmitButtonComponent from '../components/atoms/SubmitButton'
 import RadioButtonsComponent from '../components/molecules/RadioButtons'
 import RetrieveQuestion from '../Services/QuizService'
+import { useDispatch, useSelector } from 'react-redux';
+import {currentScore,addScoreWhenCorrect,resetScore} from '../Store/Reducers/ScoreReducer'
+import ModalComponent from '../components/molecules/Modal'
 
-const RealQuizScreen = ({navigation}) => {
+const RealQuizScreen = ({ navigation }) => {
     const [question, setQuestion] = useState("")
     const [answers, setAnswers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [checked, setChecked] = useState("")
     const [correct, setCorrect] = useState("")
+    const [quizCurrentScore, setQuizCurrentScore] = useState(0)
+    const [correctModalVisible, setCorrectModalVisible] = useState(false)
+    const [wrongModalVisible, setWrongModalVisible] = useState(false)
+
+    const quiz_currentScore = useSelector(currentScore)
+    const dispatch = useDispatch();
+
+    const addScoreWhenCorrectQuiz = () =>{
+        dispatch(addScoreWhenCorrect())
+    }
+
+    const resetScoreQuiz = () =>{
+        dispatch(resetScore())
+    }
+
+    const nextQuestion = () =>{
+        addScoreWhenCorrectQuiz()
+        navigation.push('RealQuiz')
+    }
+    const retryQuiz = () =>{
+        resetScoreQuiz();
+        navigation.push('RealQuiz')
+    }
+    const exitQuiz = () =>{
+        resetScoreQuiz();
+        navigation.push('RealQuiz')
+    }
 
     useEffect(() => {
+        setQuizCurrentScore(quiz_currentScore)
+        setCorrectModalVisible(false)
+        setWrongModalVisible(false)
         async function fetchData() {
             const quizData = await RetrieveQuestion()
             //setup question
@@ -87,9 +120,11 @@ const RealQuizScreen = ({navigation}) => {
 
     const SubmitAnswer = () => {
         if (checked == correct) {
-            navigation.push('RealQuiz')
+            setCorrectModalVisible(true)
+            //navigation.push('RealQuiz')
         } else {
-            console.log("salah")
+            setWrongModalVisible(true)
+            //navigation.push('RealQuiz')
         }
     }
 
@@ -97,18 +132,21 @@ const RealQuizScreen = ({navigation}) => {
         <SafeAreaView style={[styles.background]}>
             {
                 isLoading ?
-                <View style={[styles.center, styles.fill]}>
-                    <ActivityIndicator color="#ffffff" size="large"/>
-                </View>
-                : 
-                
-                <View style={[styles.fill]}>
-                    <Text style={[styles.questionText]}>{question}</Text>
-                    <RadioButtonsComponent listItem={answers} checked={checked} callback={setChecked}/>
-                    <View style={{alignItems: "flex-end"}} >
-                        <SubmitButtonComponent callback={SubmitAnswer}/>
+                    <View style={[styles.center, styles.fill]}>
+                        <ActivityIndicator color="#ffffff" size="large" />
                     </View>
-                </View>
+                    :
+
+                    <View style={[styles.fill]}>
+                        <ModalComponent isCorrect={true} setModalVisible={setCorrectModalVisible} modalVisible={correctModalVisible} nextQuestion={nextQuestion}></ModalComponent>
+                        <ModalComponent isCorrect={false} setModalVisible={setWrongModalVisible} modalVisible={wrongModalVisible} retryQuiz={retryQuiz} exitQuiz={exitQuiz}></ModalComponent>
+                        <Text style={[styles.questionText]}>{question}</Text>
+                        <RadioButtonsComponent listItem={answers} checked={checked} callback={setChecked} />
+                        <View style={{ alignItems: "center",justifyContent: "space-between", flexDirection: "row" }} >
+                            <Text style={styles.scoreText}>{quizCurrentScore}</Text>
+                            <SubmitButtonComponent callback={SubmitAnswer} />
+                        </View>
+                    </View>
             }
         </SafeAreaView>
     )
@@ -118,34 +156,43 @@ const Stack = createNativeStackNavigator()
 
 const QuizScreen = () => {
     return (
-        <Stack.Navigator initialRouteName="RealQuiz" screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName="RealQuiz" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="RealQuiz" component={RealQuizScreen} />
         </Stack.Navigator>
     )
 }
 
 const styles = StyleSheet.create({
-    fill:{
-        flex:1
+    fill: {
+        flex: 1
     },
 
-    background:{
-        flex:1,
+    background: {
+        flex: 1,
         backgroundColor: "#ffffff"
     },
 
-    center:{
-        justifyContent:"center",
-        alignItems:"center"
+    center: {
+        justifyContent: "center",
+        alignItems: "center"
     },
-    questionText:{
+    questionText: {
         margin: 16,
         fontSize: 24,
         fontWeight: "bold",
         color: "#ffffff",
         backgroundColor: "#7c589a",
-        padding : 16,
-        borderRadius : 20
+        padding: 16,
+        borderRadius: 20
+    },
+    scoreText:{
+        margin: 16,
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "#ffffff",
+        backgroundColor: "#7c589a",
+        padding: 16,
+        borderRadius: 20
     }
 })
 
