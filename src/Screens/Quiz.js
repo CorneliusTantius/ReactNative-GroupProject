@@ -133,7 +133,7 @@ const RealQuizScreen = ({ navigation }) => {
             {
                 isLoading ?
                     <View style={[styles.center, styles.fill]}>
-                        <ActivityIndicator color="#ffffff" size="large" />
+                        <ActivityIndicator color="#7c589a" size="large" />
                     </View>
                     :
 

@@ -26,6 +26,7 @@ const RadioButtonsComponent = (props) => {
                                 color="#ffffff"
                                 value={item.key}
                                 status={props.checked === item.key ? "checked" : "unchecked"}
+                                onPress={() => props.callback(item.key)}
                             />
                         </View>
                         <Text style={[styles.radioLabel]}>{item.label}</Text>
