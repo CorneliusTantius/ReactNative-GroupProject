@@ -69,13 +69,13 @@ const RealHomeScreen = ({navigation}) => {
         <SafeAreaView style={[styles.fill]}>
             <View style={[styles.fill, styles.center]}>
                 {/* <ModalComponent isCorrect={true} setModalVisible={setModalVisible} modalVisible={modalVisible} setCurrentScore={setCurrentScore}></ModalComponent> */}
-                <ModalComponent isCorrect={false} setModalVisible={setModalVisible} modalVisible={modalVisible} setCurrentScore={setCurrentScore}></ModalComponent>
+                {/* <ModalComponent isCorrect={false} setModalVisible={setModalVisible} modalVisible={modalVisible} setCurrentScore={setCurrentScore}></ModalComponent>
                 <Pressable
                     style={[styles.button, styles.buttonOpen]}
                     onPress={() => {setModalVisible(true),setScoreHome(20)}}
                 >
                     <Text style={styles.textStyle}>Show Modal</Text>
-                </Pressable>
+                </Pressable> */}
 
                 <View style={[styles.fill]}>
                     <Text style={[styles.defaultText]}>Name:</Text>
@@ -99,7 +99,8 @@ const HomeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
     fill: {
-        flex: 1
+        flex: 1,
+        padding:12
     },
     center: {
         justifyContent: "center",
