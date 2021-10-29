@@ -3,6 +3,10 @@ A project for React Native training session. This project is made by:
 
 - Cornelius Tantius [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="16px"/>](https://github.com/CorneliusTantius)
 - Eric Jonson [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="16px"/>](https://github.com/Eric-J04)
+  - UI design dan pembuatan wireframe awal
+  - Pembuatan component modal dan modal event handling
+  - Pembuatan scoring system untuk applikasi (ScoreReducer)
+  - Penyusunan flow applikasi (finalize project dan bug fix)
 - Limas Jaya Akeh [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="16px"/>](https://github.com/limasakeh)
 - Mohammad Syarif Ardi Nugroho [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="16px"/>](https://github.com/ardin301)
 
