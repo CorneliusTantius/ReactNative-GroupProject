@@ -1,9 +1,8 @@
 import React ,{useEffect, useState }from 'react'
 import { Button, View, SafeAreaView, Text, TextInput,Dimensions, StyleSheet,Pressable } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import {setScore} from '../Store/Reducers/ScoreReducer'
+import {resetScore} from '../Store/Reducers/ScoreReducer'
 import { profileUserName, setUserName } from '../Store/Reducers/ProfileReducer'
-import ModalComponent from '../components/molecules/Modal'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import RouteName from '../Routes/RouterName'
 const vw = Dimensions.get('window').width;
@@ -12,8 +11,6 @@ const vh = Dimensions.get('window').height;
 const Stack = createNativeStackNavigator()
 const RealHomeScreen = ({navigation}) => {
     const [userName, setThisUserName] = useState('No Name')
-    const [currentScore, setCurrentScore] = useState(0);
-    const [modalVisible, setModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("")
 
 
@@ -59,12 +56,14 @@ const RealHomeScreen = ({navigation}) => {
 
     const handleClick = () => {
         console.log('Clicked')
+        resetScoreQuiz();
         navigation.navigate(RouteName.Quiz)
     }
 
-    const setScoreHome = (value) =>{
-        dispatch(setScore(value))
+    const resetScoreQuiz = () =>{
+        dispatch(resetScore())
     }
+
     return (
         <SafeAreaView style={[styles.fill]}>
             <View style={[styles.fill, styles.center]}>
