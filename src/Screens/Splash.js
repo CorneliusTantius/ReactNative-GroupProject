@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import React ,{useEffect, useState }from 'react'
 import { Button, View, SafeAreaView, Text, TextInput,Dimensions, StyleSheet,Pressable } from 'react-native'
 import RouteName from '../Routes/RouterName'
+import { CommonActions } from '@react-navigation/routers'
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
@@ -10,7 +11,12 @@ const SplashScreen = ({navigation}) => {
 
     useEffect(() => {
         setTimeout( () => {
-            navigation.navigate('TabRouter');
+            navigation.dispatch(CommonActions.reset({
+                index:0,
+                routes:[
+                    {name:'TabRouter'}
+                ]
+            }));
         }, 5000);
     }, [navigation]);
 
