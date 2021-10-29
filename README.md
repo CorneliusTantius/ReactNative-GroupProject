@@ -8,6 +8,10 @@ A project for React Native training session. This project is made by:
   - Pembuatan scoring system untuk applikasi (ScoreReducer)
   - Penyusunan flow applikasi (finalize project dan bug fix)
 - Limas Jaya Akeh [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="16px"/>](https://github.com/limasakeh)
+  - Pembuatan hit api dan loading quiz
+  - Pembuatan pertanyaan dan jawaban quiz
+  - Pembuatan submit button quiz
+  - Pembuatan UI final halaman quiz
 - Mohammad Syarif Ardi Nugroho [<img src="https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white" height="16px"/>](https://github.com/ardin301)
 
 
