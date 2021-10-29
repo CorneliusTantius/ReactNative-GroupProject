@@ -27,8 +27,16 @@ Aplikasi ini merupakan aplikasi kuis seputar pemrograman yang memiliki data kuis
 
 
 ## Third Party Resources
-- [react-native-url-polyfill](https://www.npmjs.com/package/react-native-url-polyfill)
-- [react-native-paper](https://callstack.github.io/react-native-paper/)
+- Third Party Libraries:
+  - [Axios](https://axios-http.com/)
+  - [Redux](https://redux.js.org/)
+  - [React Navigation](https://reactnavigation.org/)
+  - [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
+  - [react-native-url-polyfill](https://www.npmjs.com/package/react-native-url-polyfill)
+  - [react-native-paper](https://callstack.github.io/react-native-paper/)
+- Third Party API:
+  - [QuizApi](https://quizapi.io/)
+  - [JokeApi](https://sv443.net/jokeapi/v2/)
 
 ## How To Run
 - Make sure to have [Node.Js](https://nodejs.org/en/) installed in your machine.
