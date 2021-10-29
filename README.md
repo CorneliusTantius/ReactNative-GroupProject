@@ -14,6 +14,9 @@ A project for React Native training session. This project is made by:
   - Pembuatan submit button quiz
   - Pembuatan UI final halaman quiz
 
+## Third Party Resources
+- [react-native-url-polyfill](https://www.npmjs.com/package/react-native-url-polyfill)
+- [react-native-paper](https://callstack.github.io/react-native-paper/)
 
 ## How To Run
 - Make sure to have [Node.Js](https://nodejs.org/en/) installed in your machine.
