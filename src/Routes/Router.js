@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 
 const TabRouter = function () {
     return (
-        <NavigationContainer>
+        // <NavigationContainer>
             <Tab.Navigator
                 screenOptions={({route}) => ({
                     tabBarIcon: ({ focused, color, size }) =>{
@@ -41,24 +41,27 @@ const TabRouter = function () {
                     tabBarInactiveTintColor: 'gray',
                 })}
             >
-                <Tab.Screen name={RouteName.Splash} component={SplashScreen} options={{ headerShown: false }} />
+                {/* <Tab.Screen name={RouteName.Splash} component={SplashScreen} options={{ headerShown: false }} /> */}
                 <Tab.Screen name={RouteName.Home} component={HomeScreen} />
-                <Tab.Screen name={RouteName.Quiz} component={QuizScreen} options={{headerLeft: null}}/>
+                {/* <Tab.Screen name={RouteName.Quiz} component={QuizScreen} options={{headerLeft: null}}/> */}
                 <Tab.Screen name={RouteName.Profile} component={ProfileScreen} options={{headerShown:false}} />
                 <Tab.Screen name={RouteName.About} component={AboutScreen} />
                 {/* <Tab.Screen options={{ headerShown: false }} name={RouteName.Home} component={StackRouter} /> */}
             </Tab.Navigator>
-        </NavigationContainer>
+        //</NavigationContainer>
     );
 }
 
 const StackRouter = function () {
     return (
-        <Stack.Navigator initialRouteName={RouteName.Splash}>
-            <Stack.Screen name={RouteName.Splash} component={SplashScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="TabRouter" component={TabRouter}/>
-        </Stack.Navigator>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName={RouteName.Splash}>
+                <Stack.Screen name={RouteName.Splash} component={SplashScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="TabRouter" component={TabRouter} options={{ headerShown: false }}/>
+                <Stack.Screen name={RouteName.Quiz} component={QuizScreen}/>
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 
-export default TabRouter
+export default StackRouter
