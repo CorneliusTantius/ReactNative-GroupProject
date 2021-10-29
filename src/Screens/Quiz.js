@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {currentScore,addScoreWhenCorrect,resetScore} from '../Store/Reducers/ScoreReducer'
 import ModalComponent from '../components/molecules/Modal'
 import { profileHighScore ,setHighScore } from '../Store/Reducers/ProfileReducer'
+import { CommonActions } from '@react-navigation/routers'
 
 const RealQuizScreen = ({ navigation }) => {
     const [question, setQuestion] = useState("")
@@ -34,15 +35,32 @@ const RealQuizScreen = ({ navigation }) => {
 
     const nextQuestion = () =>{
         addScoreWhenCorrectQuiz()
-        navigation.push('RealQuiz')
+        navigation.dispatch(CommonActions.reset({
+            index:0,
+            routes:[
+                {name:'RealQuiz'}
+            ]
+        }));
+        // navigation.push('RealQuiz')
     }
     const retryQuiz = () =>{
         resetScoreQuiz();
-        navigation.push('RealQuiz')
+        navigation.dispatch(CommonActions.reset({
+            index:0,
+            routes:[
+                {name:'RealQuiz'}
+            ]
+        }));
+        // navigation.push('RealQuiz')
     }
     const exitQuiz = () =>{
         resetScoreQuiz();
-        navigation.push('RealQuiz')
+        navigation.dispatch(CommonActions.reset({
+            index:0,
+            routes:[
+                {name:'Profile'}
+            ]
+        }));
     }
 
     useEffect(() => {
@@ -161,7 +179,7 @@ const Stack = createNativeStackNavigator()
 
 const QuizScreen = () => {
     return (
-        <Stack.Navigator initialRouteName="RealQuiz" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName="RealQuiz" screenOptions={{ headerShown: false, headerLeft:null }}>
             <Stack.Screen name="RealQuiz" component={RealQuizScreen} />
         </Stack.Navigator>
     )

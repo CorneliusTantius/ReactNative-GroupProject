@@ -43,7 +43,7 @@ const TabRouter = function () {
             >
                 <Tab.Screen name={RouteName.Splash} component={SplashScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={RouteName.Home} component={HomeScreen} />
-                <Tab.Screen name={RouteName.Quiz} component={QuizScreen} />
+                <Tab.Screen name={RouteName.Quiz} component={QuizScreen} options={{headerLeft: null}}/>
                 <Tab.Screen name={RouteName.Profile} component={ProfileScreen} options={{headerShown:false}} />
                 <Tab.Screen name={RouteName.About} component={AboutScreen} />
                 {/* <Tab.Screen options={{ headerShown: false }} name={RouteName.Home} component={StackRouter} /> */}
